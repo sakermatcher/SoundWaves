@@ -1,0 +1,36 @@
+#frecuency {
+    position: absolute;
+    background-color: rgba(255, 249, 222, 0.667);
+    border-radius: 10px;
+    display: block;
+    color: #575757;
+    font-size: 1.5rem;
+    font-family: sans-serif;
+    width: 25vw;
+    height: 15vh;
+    padding-left: 5%;
+    padding-right: 5%;
+    padding-bottom: 10%;
+}
+
+.theta {
+    left: 10vw;
+    top: 40vh;
+}
+
+.alfa {
+    right: 10vw;
+    top: 40vh;
+}
+
+h1 {
+    color: #fff;
+    position: absolute;
+    width: 100vw;
+    left: -0vw;
+    font-size: 4rem;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; 
+    text-align: center;
+    margin: 0;
+    top: 5vh;
+}

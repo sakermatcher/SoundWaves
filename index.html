@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="" id="type">
+    <title>Ondas Sonoras</title>
+    <script src="https://kit.fontawesome.com/a49a4c3c1a.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <img src="background.png" id="background">
+    <canvas id="soundwave"></canvas>
+
+    <div class="header">
+        <h1>En busca de tu concentracion, paz y serenidad</h1>
+    </div>
+    
+    <div class="soundwave-container" id="soundwaveContainer">
+        <div class="theta" id="frecuency"> <h2>Theta</h2>
+            <button class="play-pause-btn" onclick="togglePlay(0)"><i class="fa-solid fa-play" id="frq0"></i></button>
+            <input type="range" id="time0" value="0" min="0" max="100" step="1" onchange="updateTime(0, this.value)" style="width: 70%;">
+            <p>Serenidad, imaginación y bienestar.</p>
+        </div>
+        <div class="alfa" id="frecuency"> <h2>Alfa</h2>
+            <button class="play-pause-btn" onclick="togglePlay(1)"><i class="fa-solid fa-play" id="frq1"></i></button>
+            <input type="range" id="time1" value="0" min="0" max="100" step="1" onchange="updateTime(1, this.value)" style="width: 70%;">
+            <p>Relajación, creatividad y concentración.</p>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+
+    <script>
+        const canvas = document.getElementById('soundwave');
+        const ctx = canvas.getContext('2d');
+        const colors = ['#7C93C3', '#9EB8D9', '#EEF5FF']; // Blue colors
+
+        let newAmplitudes = [0,0,0];
+        let waveCount = 3; // Number of waves
+        let waves = [];
+        let displacement = 0;
+
+        for (let i = 0; i < waveCount; i++) {
+            randomGlow = []
+            for (let j = i; j < waveCount*100; j += waveCount) {
+                randomGlow.push({
+                    place: j/(waveCount*100),
+                    alpha: Math.cos(j/(waveCount*100)*3)*0.5 // Adjust glow effect
+                });
+            }
+            
+            waves.push({
+                wavelength: 100 + i * 50, // Initial wavelength for each wave
+                amplitude: 0, // Initial amplitude for each wave
+                glow: randomGlow,
+                color: colors[i] // Color for each wave
+            });
+        }
+
+        function draw() {
+            canvas.width = window.innerWidth * 2;
+            for (let i = 0; i < waveCount; i++) {
+                waves[i].wavelength = window.innerWidth / 6;
+            }
+            canvas.height = window.innerHeight;
+
+            //make the background image visible
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.0)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            for (let i = 0; i < waveCount; i++) {
+                drawGlowingLine(waves[i]);
+            }
+
+            for (let i = 0; i < waveCount; i++) {
+                drawSoundwave(waves[i]);
+                
+            }
+
+            requestAnimationFrame(draw);
+        }
+
+        function drawSoundwave(wave) {
+
+            ctx.beginPath();
+            ctx.strokeStyle = wave.color;
+            ctx.lineWidth = 5; // Adjust line thickness
+
+            for (let x = Math.floor(canvas.width/4); x < canvas.width - Math.floor(canvas.width/5); x += 5) {
+                const y = wave.amplitude * Math.sin(x / wave.wavelength - displacement);
+                ctx.lineTo(x, canvas.height / 2 + y);
+            }
+
+            ctx.stroke();
+        }
+
+        function drawGlowingLine(wave) {
+            const gradient = ctx.createLinearGradient(canvas.width / 2, canvas.height / 2, 0, canvas.width / 2, canvas.height / 2, canvas.height / 2);
+            for (let i = 0; i < wave.glow.length; i++) {
+                gradient.addColorStop(wave.glow[i].place, getColorString(wave, wave.glow[i].alpha));
+            }
+            ctx.beginPath();
+            ctx.strokeStyle = gradient;
+            ctx.lineWidth = canvas.height/4; // Adjust line thickness for the glowing effect
+
+            for (let x = 0; x < canvas.width; x += 5) {
+                const y = wave.amplitude * Math.sin(x / wave.wavelength - displacement);
+                ctx.lineTo(x, canvas.height / 2 + y);
+            }
+
+            ctx.stroke();
+        }
+
+        function getColorString(wave, alpha) {
+            return `rgba(${hexToRgb(wave['color'])}, ${alpha})`;
+        }
+
+        function hexToRgb(hex) {
+            // Expand shorthand form (e.g., "03F") to full form (e.g., "0033FF")
+            const shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
+            hex = hex.replace(shorthandRegex, (m, r, g, b) => r + r + g + g + b + b);
+
+            const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+            return result ? `${parseInt(result[1], 16)}, ${parseInt(result[2], 16)}, ${parseInt(result[3], 16)}` : null;
+        }
+
+        function randomAmplitude() { // Randomize amplitude for each wave
+            const max = 300;
+            let newAmplitude = (Math.random() * max + 10 - (Math.random() * max + 10) - waves[0].amplitude)/120;
+            newAmplitudes = [newAmplitude, newAmplitude/2, newAmplitude/3];
+        }
+
+        addEventListener('resize', () => {
+            canvas.height = window.innerHeight;
+        });
+
+        setInterval(() => {
+            randomAmplitude();
+        }, 6000);
+
+        setInterval(() => {
+            for (let i = 0; i < waveCount; i++) {
+                waves[i].amplitude += newAmplitudes[i];
+            }
+            displacement += 0.01;
+        }, 50);
+
+        draw();
+        randomAmplitude();
+    </script>
+</body>
+
+</html>
