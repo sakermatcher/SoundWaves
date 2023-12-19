@@ -1,36 +1,73 @@
+html{
+    scroll-behavior: smooth;
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 3px grey;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgb(130, 130, 130);
+    border-radius: 5px;
+}
+
 #frecuency {
+    text-align: justify;
     position: absolute;
-    background-color: rgba(255, 249, 222, 0.667);
     border-radius: 10px;
     display: block;
-    color: #575757;
     font-size: 1.5rem;
-    font-family: sans-serif;
-    width: 25vw;
-    height: 15vh;
-    padding-left: 5%;
-    padding-right: 5%;
-    padding-bottom: 10%;
+    width: 20vw;
+    height: 80vh;
+    padding-left: 5vw;
+    padding-right: 5vw;
 }
 
 .theta {
-    left: 10vw;
-    top: 40vh;
+    left: 2.5vw;
+    top: 120vh;
 }
 
 .alfa {
-    right: 10vw;
-    top: 40vh;
+    left: 35vw;
+    top: 120vh;
 }
 
-h1 {
-    color: #fff;
-    position: absolute;
-    width: 100vw;
-    left: -0vw;
-    font-size: 4rem;
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; 
+.omega{
+    left: 67.5vw;
+    top: 120vh;
+}
+
+.h1 {
+    overflow-y: auto;
+    overflow-x: hidden;
+    font-size: 5.5rem;
     text-align: center;
     margin: 0;
-    top: 5vh;
+}
+
+.header{
+    width: 100vw;
+    top: 44.5vh;
+    left: -0vw;
+    position: absolute;
+}
+
+.arrowDwn {
+    position: absolute;
+    color: rgb(255, 254, 224);
+    top : 40vh;
+    left: 50%;
+    font-size: 5rem;
+    cursor: pointer;
+    text-shadow: 2px 0 #dbdbdb, 0 2px #ffffff, 0
+1px 1px #ffffff, -1px -1px #d4d4d4, 1px -1px #cacaca, -1px 1px #ffffff;
+}
+.arrowDwn:hover{
+    color: rgb(176, 167, 108)
 }

@@ -3,6 +3,10 @@
 
 <head>
     <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz@9..40&family=Passion+One&family=Yanone+Kaffeesatz&display=swap" rel="stylesheet">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="" id="type">
@@ -15,19 +19,37 @@
     <canvas id="soundwave"></canvas>
 
     <div class="header">
-        <h1>En busca de tu concentracion, paz y serenidad</h1>
+        <p class="h1">En busca de tu concentracion, paz y serenidad</p>
+        <div class="arrowDwn" onclick="scrollDown()"><i class="fa-solid fa-angle-down"></i></div>
     </div>
     
     <div class="soundwave-container" id="soundwaveContainer">
         <div class="theta" id="frecuency"> <h2>Theta</h2>
             <button class="play-pause-btn" onclick="togglePlay(0)"><i class="fa-solid fa-play" id="frq0"></i></button>
             <input type="range" id="time0" value="0" min="0" max="100" step="1" onchange="updateTime(0, this.value)" style="width: 70%;">
-            <p>Serenidad, imaginación y bienestar.</p>
+            <p>Las ondas cerebrales Theta desempeñan un papel fundamental en nuestra mente, impactando
+                estados de serenidad, imaginación y bienestar. <br>
+                Tienen un rango de oscilación entre 4 y 8 Hz, manifestando un ritmo pausado y constante. <br>
+                Estados mentales Theta nos sumergen en períodos de profunda tranquilidad, ensoñación y
+                fase de sueño REM, dirigiendo nuestras vivencias cognitivas. <br>
+                Además, las ondas Theta se reconocen también como frecuencias curativas, potencialmente
+                contribuyendo al bienestar mental y físico.</p>
         </div>
+
         <div class="alfa" id="frecuency"> <h2>Alfa</h2>
             <button class="play-pause-btn" onclick="togglePlay(1)"><i class="fa-solid fa-play" id="frq1"></i></button>
             <input type="range" id="time1" value="0" min="0" max="100" step="1" onchange="updateTime(1, this.value)" style="width: 70%;">
-            <p>Relajación, creatividad y concentración.</p>
+            <p>Este tipo de ondas se pueden asociar también a estados de relajación mental, reduciendo
+                niveles de estrés y ansiedad en la mente y cuerpo; por lo que, tienen la capacidad de aumentar
+                nuestra creatividad y nuestro estado de concentración al estar calmado. <br>
+                Facilitan el funcionamiento de la mente, reducen la tensión, potencian la capacidad de
+                retención de información y aumentan tu nivel de enfoque.</p>
+        </div>
+
+        <div class="omega" id="frecuency"> <h2>Omega</h2>
+            <button class="play-pause-btn" onclick="togglePlay(2)"><i class="fa-solid fa-play" id="frq2"></i></button>
+            <input type="range" id="time2" value="0" min="0" max="100" step="1" onchange="updateTime(2, this.value)" style="width: 70%;">
+            <p>Sepa Juda</p>
         </div>
     </div>
 
@@ -58,6 +80,10 @@
                 glow: randomGlow,
                 color: colors[i] // Color for each wave
             });
+        }
+
+        function scrollDown() {
+            window.scrollTo(0, 1000);
         }
 
         function draw() {

@@ -1,24 +1,53 @@
 body {
     margin: 0;
-    overflow: hidden;
     background-color: #111;
+    overflow-x: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 210vh;
 }
 
 canvas {
-    position: absolute;
+    position: fixed;
     z-index: -1;
+    top: 0vh;
     left: -50vw;
     width: 200vw;
 }
 
 #background {
-    position: absolute;
+    position: fixed;
+    top: 0vh;
     width: 100%;
     height: 100%;
     object-fit: cover;
     z-index: -1;
+}
+
+.theta {
+    color: #7400B8;
+    background-color: #80FFDB70;
+}
+
+.alfa{
+    color: #6930C3;
+    background-color: #72EFDD70;
+}
+
+.omega{
+    color: #5E60CE;
+    background-color: #64DFDF70;
+}
+
+h2 {
+    font-family: DM Sans;
+    text-align: center;
+}
+p {
+    font-family: Yanone Kaffeesatz;
+}
+.h1{
+    font-family: Passion One;
+    color: rgb(255, 254, 224);
 }
