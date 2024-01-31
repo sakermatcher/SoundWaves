@@ -22,7 +22,7 @@ html{
     border-radius: 10px;
     display: block;
     font-size: 1.5rem;
-    width: 20vw;
+    width: 36vw;
     height: 80vh;
     padding-left: 5vw;
     padding-right: 5vw;
@@ -34,12 +34,7 @@ html{
 }
 
 .alfa {
-    left: 35vw;
-    top: 120vh;
-}
-
-.omega{
-    left: 67.5vw;
+    right: 2.5vw;
     top: 120vh;
 }
 

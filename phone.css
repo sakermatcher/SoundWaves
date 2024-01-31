@@ -20,11 +20,6 @@
     top: 82rem;
 }
 
-.omega {
-    left: 10vw;
-    top: 104rem;
-}
-
 .h1 {
     position: absolute;
     width: 90vw;
@@ -32,7 +27,7 @@
     font-size: 4rem;
     text-align: center;
     margin: 0;
-    top: 16rem;
+    top: 21rem;
 }
 
 .arrowDwn {
